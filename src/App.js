@@ -24,7 +24,6 @@ class App extends React.Component {
         });
     }
 
-
     start = (observable) => {
         if (this.isTimerStart === false) {
             this.isTimerStart = true
@@ -43,17 +42,14 @@ class App extends React.Component {
         }
     }
 
-    reset = () => {
-        if (this.subscriber) {
+    reset = (subscriber) => {
+        if (subscriber) {
             this.counter = 0;
             this.setState({counter: this.counter})
         }
     }
 
-    wait = (clicks, subscriber, isTimerStart) => {
-        if (clicks) {
-            this.clicks = clicks;
-        }
+    wait = (subscriber, isTimerStart) => {
         if (subscriber && isTimerStart) {
             this.isTimerStart = false;
             subscriber.unsubscribe();
@@ -89,32 +85,31 @@ class App extends React.Component {
 
     render() {
         return (
-            <div className="App" id="stopWatch">
-                <Clock
-                    time={this.correctClock(this.state.counter)}
-                />
-                <Button
-                    startTimer={this.start}
-                    stopTimer={this.stop}
-                    observable={this.timer}
-                    isTimerStart={this.isTimerStart}
-                    subscriber={this.subscriber}
-                    purpose='Start'/>
-                <Button
-                    stopTimer={this.stop}
-                    isTimerStart={this.isTimerStart}
-                    subscriber={this.subscriber}
-                    purpose='Stop'/>
-                <Button
-                    resetTimer={this.reset}
-                    subscriber={this.subscriber}
-                    purpose='Reset'/>
-                <Button
-                    waitTimer={this.wait}
-                    subscriber={this.subscriber}
-                    clicks={this.clicks}
-                    isTimerStart={this.isTimerStart}
-                    purpose='Wait'/>
+            <div className="stopWatch">
+                <div className="clock">
+                    <Clock
+                        time={this.correctClock(this.state.counter)}
+                    />
+                </div>
+                <div className="button">
+                    <Button
+                        startTimer={this.start}
+                        observable={this.timer}
+                        purpose='Start'/>
+                    <Button
+                        stopTimer={this.stop}
+                        subscriber={this.subscriber}
+                        purpose='Stop'/>
+                    <Button
+                        resetTimer={this.reset}
+                        subscriber={this.subscriber}
+                        purpose='Reset'/>
+                    <Button
+                        waitTimer={this.wait}
+                        subscriber={this.subscriber}
+                        isTimerStart={this.isTimerStart}
+                        purpose='Wait'/>
+                </div>
             </div>
         );
     }

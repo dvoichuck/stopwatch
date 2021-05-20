@@ -1,4 +1,6 @@
 import React from 'react';
+import styles from './button.module.css'
+let click = 0
 
 class Button extends React.Component {
     constructor(props) {
@@ -6,7 +8,6 @@ class Button extends React.Component {
     }
 
     handleEvent = (purpose) => {
-        console.log(purpose)
         switch (purpose) {
             case 'Start': {
                 this.props.startTimer(this.props.observable)
@@ -21,35 +22,22 @@ class Button extends React.Component {
                 break;
             }
             case 'Wait': {
-                    console.log(this.props)
-                    let flag = false;
-                    let click = this.props.clicks + 1
-                    if (click === 1) {
-                        setTimeout(function () {
-                            if (click === 2) {
-                                flag = true
-                            }
-                            click = 0;
-                        }, 300);
-                    }
-                    if (flag) {
-                        console.log(click)
-                        this.props.waitTimer(this.props.subscriber, this.props.isTimerStart);
-                    }
-                    else {
-                        console.log(click)
-                        this.props.waitTimer(this.props.clicks)
-                    }
-
-                    break;
+                click++
+                if (click === 1)
+                    setTimeout(function () {
+                        click = 0;
+                    }, 300);
+                if (click === 2)
+                    this.props.waitTimer(this.props.subscriber, this.props.isTimerStart);
+                break;
             }
         }
     }
 
     render() {
         return (
-            <button
-                onClick={() => this.handleEvent(this.props.purpose)}>
+            <button  className={styles.button} onClick={() => this.handleEvent(this.props.purpose)}>
+                {this.props.purpose}
             </button>
         )
     }

@@ -1,5 +1,5 @@
 import React from "react";
-
+import styles from './clock.module.css'
 
 class Clock extends React.Component {
     constructor(props) {
@@ -7,8 +7,7 @@ class Clock extends React.Component {
     }
 
     render() {
-        console.log(this.props)
-        return <div>{this.props.time}</div>;
+        return <div id={styles.div} className={styles.clock}>{this.props.time}</div>;
     }
 }
 

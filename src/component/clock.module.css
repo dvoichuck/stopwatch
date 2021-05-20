@@ -1,0 +1,9 @@
+@font-face {
+    font-family: "DS GITI";
+    src: url("/src/fonts/DS-DIGI.TTF") format("woff");
+}
+
+#div {
+    color: white;
+    font-family: "DS GITI" , serif;
+}
