@@ -1,3 +1,13 @@
+button:disabled:before {
+    background: linear-gradient(180deg, #ff3000, #fc8d8c, #ff096c, #d50082);
+}
+
+button:disabled {
+    border: 1px solid;
+    border-image: linear-gradient(180deg, #ff3000, #fc8d8c, #ff096c, #d50082);
+    border-image-slice: 1;
+}
+
 button {
     text-decoration: none;
     color: white;
@@ -8,7 +18,7 @@ button {
     padding: 15px 30px;
     width: 10vw;
     border: 1px solid;
-    border-image: linear-gradient(180deg, #ff3000, #ed0200, #ff096c, #d50082);
+    border-image: linear-gradient(180deg, #b3f000, #00ed20, #09ff80, #00d5aa);
     border-image-slice: 1;
     margin: 10px 20px;
     font-family: 'Montserrat', sans-serif;
@@ -26,7 +36,7 @@ button:before {
     width: 100%;
     z-index: -1;
     color: white;
-    background: linear-gradient(180deg, #ff3000, #ed0200, #ff096c, #d50082);
+    background: linear-gradient(180deg, #b3f000, #00ed20, #09ff80, #00d5aa);
     transition: .8s cubic-bezier(.165, .84, .44, 1);
 }
 button:hover {

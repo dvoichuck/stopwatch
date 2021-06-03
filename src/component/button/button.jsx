@@ -3,22 +3,18 @@ import styles from './button.module.css'
 let click = 0
 
 class Button extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     handleEvent = (purpose) => {
         switch (purpose) {
             case 'Start': {
-                this.props.startTimer(this.props.observable)
+                this.props.startTimer()
                 break;
             }
             case 'Stop': {
-                this.props.stopTimer(this.props.subscriber)
+                this.props.stopTimer()
                 break
             }
             case 'Reset': {
-                this.props.resetTimer(this.props.subscriber);
+                this.props.resetTimer();
                 break;
             }
             case 'Wait': {
@@ -28,7 +24,7 @@ class Button extends React.Component {
                         click = 0;
                     }, 300);
                 if (click === 2)
-                    this.props.waitTimer(this.props.subscriber, this.props.isTimerStart);
+                    this.props.waitTimer();
                 break;
             }
         }
@@ -36,7 +32,7 @@ class Button extends React.Component {
 
     render() {
         return (
-            <button  className={styles.button} onClick={() => this.handleEvent(this.props.purpose)}>
+            <button disabled={this.props.disabled} className={styles.button} onClick={() => this.handleEvent(this.props.purpose)}>
                 {this.props.purpose}
             </button>
         )
