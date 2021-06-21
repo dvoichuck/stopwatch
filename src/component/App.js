@@ -8,9 +8,9 @@ import {tap} from "rxjs/operators";
 class App extends React.Component {
     constructor() {
         super();
-        this.counter = 0;
+        this.counter = 1;
         this.state = {
-            counter: this.counter,
+            counter: 0,
             active: [false, true, true, true]
         };
         this.stream$  = interval(1000).pipe(
@@ -29,14 +29,14 @@ class App extends React.Component {
     stop = () => {
         this.subscriber.unsubscribe()
         this.setState({active: [false, true, true, true]})
-        this.counter = 0;
-        this.setState({counter: this.counter})
+        this.counter = 1;
+        this.setState({counter: 0})
     }
 
     reset = () => {
         this.subscriber.unsubscribe()
         this.setState({active: [true, false, false, false]})
-        this.counter = 0
+        this.counter = 1
         this.subscriber = this.stream$.subscribe(value => this.setState({counter: this.counter++}))
     }
 
